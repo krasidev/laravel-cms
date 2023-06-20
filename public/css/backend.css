@@ -27120,3 +27120,59 @@ div.dataTables_wrapper .dataTables_paginate .paginate_button .page-link:focus {
 .button_hamburger_htra[aria-expanded=true] span {
   transform: rotate(180deg);
 }
+
+.form-control:focus,
+.form-control:active,
+.btn:focus,
+.swal2-styled:focus {
+  box-shadow: none !important;
+}
+
+input {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.has-clear input {
+  padding-right: 0;
+  border-right-color: transparent;
+}
+.has-clear input:focus {
+  border-right-color: transparent;
+}
+.has-clear input:focus + .input-group-append .btn-clear {
+  border-color: #80bdff;
+  border-left-color: transparent;
+}
+.has-clear input:not(:-ms-input-placeholder):focus + .input-group-append .btn-clear {
+  color: #dc3545;
+}
+.has-clear input:not(:placeholder-shown):focus + .input-group-append .btn-clear {
+  color: #dc3545;
+}
+.has-clear input::-ms-clear, .has-clear input::-ms-reveal {
+  display: none;
+}
+.has-clear input:-ms-input-placeholder + .input-group-append .btn-clear {
+  color: #fff;
+  pointer-events: none;
+}
+.has-clear input:placeholder-shown + .input-group-append .btn-clear {
+  color: #fff;
+  pointer-events: none;
+}
+.has-clear .input-group-append .btn-clear {
+  color: #6c757d;
+  border-color: #ced4da;
+  border-left-color: transparent;
+  border-top-right-radius: 0.3rem !important;
+  border-bottom-right-radius: 0.3rem !important;
+  background-color: #fff;
+}
+.has-clear .input-group-append .btn-clear:hover, .has-clear .input-group-append .btn-clear:focus {
+  color: #c82333 !important;
+}
+.has-clear .input-group-append .btn-clear:active {
+  color: #bd2130 !important;
+}
