@@ -16,6 +16,42 @@ return [
                 'update-password' => 'Update Password'
             ]
         ],
+        'google-analytics' => [
+            'table' => [
+                'filters' => [
+                    'options' => [
+                        'path' => 'All URLs',
+                        'continent' => 'All Continents',
+                        'language' => 'All Languages',
+                        'browser' => 'All Browsers',
+                        'device-category' => 'All Device Categories',
+                        'operating-system' => 'All Operating Systems'
+                    ],
+                    'placeholders' => [
+                        'start_date' => 'Start Date',
+                        'end_date' => 'End Date'
+                    ],
+                ],
+                'headers' => [
+                    'id' => 'ID',
+                    'date' => 'Date',
+                    'path' => 'Path',
+                    'title' => 'Title',
+                    'continent' => 'Continent',
+                    'country' => 'Country',
+                    'city' => 'City',
+                    'language' => 'Language',
+                    'browser' => 'Browser',
+                    'device-category' => 'Device Category',
+                    'operating-system' => 'Operating System',
+                    'version' => 'Version',
+                    'visitors' => 'Visitors',
+                    'pageviews' => 'Page Views',
+                    'created_at' => 'Created At',
+                    'updated_at' => 'Updated At'
+                ]
+            ]
+        ],
         'projects' => [
             'table' => [
                 'filters' => [

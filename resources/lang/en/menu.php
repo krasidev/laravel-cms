@@ -7,6 +7,15 @@ return [
             'edit' => 'Profile',
             'edit-password' => 'Edit password'
         ],
+        'google-analytics' => [
+            'text' => 'Google Analytics',
+            'urls' => 'URLs',
+            'locations' => 'Locations',
+            'languages' => 'Languages',
+            'browsers' => 'Browsers',
+            'device-categories' => 'Device Categories',
+            'operating-systems' => 'Operating Systems'
+        ],
         'projects' => [
             'text' => 'Projects',
             'index' => 'List Projects',

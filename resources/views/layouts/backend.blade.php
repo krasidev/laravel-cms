@@ -74,6 +74,56 @@
 
                         <div id="backend-side-nav-group" class="flex-grow-1 overflow-auto on-hover">
                             <ul class="nav flex-column">
+                                <li class="nav-item">
+                                    @php
+                                        $isOpenCollapseGoogleAnalytics = request()->routeIs('backend.google-analytics.*');
+                                    @endphp
+                                    <a href="#collapseGoogleAnalytics" class="nav-link d-flex align-items-center @if(!$isOpenCollapseGoogleAnalytics) collapsed @endif" data-toggle="collapse" aria-expanded="{{ $isOpenCollapseGoogleAnalytics ? 'true' : 'false' }}" aria-controls="collapseGoogleAnalytics">
+                                        <i class="fas fa-chart-simple mr-2"></i>
+                                        {{ __('menu.backend.google-analytics.text') }}
+                                        <i class="plus-minus-rotate flex-shrink-0 ml-auto collapsed"></i>
+                                    </a>
+                                    <div id="collapseGoogleAnalytics" class="collapse @if($isOpenCollapseGoogleAnalytics) show @endif">
+                                        <ul class="nav flex-column">
+                                            <li class="nav-item">
+                                                <a href="{{ route('backend.google-analytics.urls') }}" class="nav-link @if(request()->routeIs('backend.google-analytics.urls')) active @endif">
+                                                    {{ __('menu.backend.google-analytics.urls') }}
+                                                </a>
+                                            </li>
+
+                                            <li class="nav-item">
+                                                <a href="{{ route('backend.google-analytics.locations') }}" class="nav-link @if(request()->routeIs('backend.google-analytics.locations')) active @endif">
+                                                    {{ __('menu.backend.google-analytics.locations') }}
+                                                </a>
+                                            </li>
+
+                                            <li class="nav-item">
+                                                <a href="{{ route('backend.google-analytics.languages') }}" class="nav-link @if(request()->routeIs('backend.google-analytics.languages')) active @endif">
+                                                    {{ __('menu.backend.google-analytics.languages') }}
+                                                </a>
+                                            </li>
+
+                                            <li class="nav-item">
+                                                <a href="{{ route('backend.google-analytics.browsers') }}" class="nav-link @if(request()->routeIs('backend.google-analytics.browsers')) active @endif">
+                                                    {{ __('menu.backend.google-analytics.browsers') }}
+                                                </a>
+                                            </li>
+
+                                            <li class="nav-item">
+                                                <a href="{{ route('backend.google-analytics.device-categories') }}" class="nav-link @if(request()->routeIs('backend.google-analytics.device-categories')) active @endif">
+                                                    {{ __('menu.backend.google-analytics.device-categories') }}
+                                                </a>
+                                            </li>
+
+                                            <li class="nav-item">
+                                                <a href="{{ route('backend.google-analytics.operating-systems') }}" class="nav-link @if(request()->routeIs('backend.google-analytics.operating-systems')) active @endif">
+                                                    {{ __('menu.backend.google-analytics.operating-systems') }}
+                                                </a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </li>
+
                                 @can('manage_system')
                                     <li class="nav-item">
                                         @php
