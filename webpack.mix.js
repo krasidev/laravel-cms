@@ -11,6 +11,8 @@ const mix = require('laravel-mix');
  |
  */
 
+mix.setPublicPath('public');
+mix.setResourceRoot('../');
 mix.js('resources/js/auth.js', 'public/js')
     .js('resources/js/backend.js', 'public/js')
     .js('resources/js/frontend.js', 'public/js')
