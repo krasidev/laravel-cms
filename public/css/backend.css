@@ -1,5 +1,32 @@
-@import url(https://fonts.googleapis.com/css?family=Nunito);
 @charset "UTF-8";
+@font-face {
+  font-family: "PT Sans";
+  font-weight: bold;
+  font-style: italic;
+  font-display: swap;
+  src: url(../fonts/PTSans-BoldItalic.woff2?32331f089642f543c60124dca2936c6c) format("woff2"), url(../fonts/PTSans-BoldItalic.woff?b6d9449ad0b2232fca3608455538e231) format("woff");
+}
+@font-face {
+  font-family: "PT Sans";
+  font-weight: bold;
+  font-style: normal;
+  font-display: swap;
+  src: url(../fonts/PTSans-Bold.woff2?f3941d80ebc54ad11d8b4470eea20382) format("woff2"), url(../fonts/PTSans-Bold.woff?d352e17c050689652441667247d9ce77) format("woff");
+}
+@font-face {
+  font-family: "PT Sans";
+  font-weight: normal;
+  font-style: italic;
+  font-display: swap;
+  src: url(../fonts/PTSans-Italic.woff2?bb51baf31adec8e6f40d80e839f01c74) format("woff2"), url(../fonts/PTSans-Italic.woff?0711c88a700937926750d6cc93cd4b16) format("woff");
+}
+@font-face {
+  font-family: "PT Sans";
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+  src: url(../fonts/PTSans-Regular.woff2?9585da7aa08dd128457b350836178821) format("woff2"), url(../fonts/PTSans-Regular.woff?07452396d2e22557fe3da6da66ce26e0) format("woff");
+}
 /*!
  * Bootstrap v4.6.2 (https://getbootstrap.com/)
  * Copyright 2011-2022 The Bootstrap Authors
@@ -33,7 +60,7 @@
   --breakpoint-md: 768px;
   --breakpoint-lg: 992px;
   --breakpoint-xl: 1200px;
-  --font-family-sans-serif: "Nunito", sans-serif;
+  --font-family-sans-serif: "PT Sans", sans-serif;
   --font-family-monospace: SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
 }
 
@@ -56,7 +83,7 @@ article, aside, figcaption, figure, footer, header, hgroup, main, nav, section {
 
 body {
   margin: 0;
-  font-family: "Nunito", sans-serif;
+  font-family: "PT Sans", sans-serif;
   font-size: 0.9rem;
   font-weight: 400;
   line-height: 1.6;
@@ -5390,7 +5417,7 @@ a.close.disabled {
   z-index: 1070;
   display: block;
   margin: 0;
-  font-family: "Nunito", sans-serif;
+  font-family: "PT Sans", sans-serif;
   font-style: normal;
   font-weight: 400;
   line-height: 1.6;
@@ -5492,7 +5519,7 @@ a.close.disabled {
   z-index: 1060;
   display: block;
   max-width: 276px;
-  font-family: "Nunito", sans-serif;
+  font-family: "PT Sans", sans-serif;
   font-style: normal;
   font-weight: 400;
   line-height: 1.6;
