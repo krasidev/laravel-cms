@@ -6,6 +6,7 @@ try {
     require('bootstrap');
     require('bootstrap-datepicker');
     require('bootstrap-datetime-picker');
+    require('bootstrap-timepicker');
 } catch (e) {}
 
 /**
