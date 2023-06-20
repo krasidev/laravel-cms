@@ -3,6 +3,10 @@
 return [
     'backend' => [
         'searchbar' => 'Search menu',
+        'profile' => [
+            'edit' => 'Profile',
+            'edit-password' => 'Edit password'
+        ],
         'users' => [
             'text' => 'Users',
             'index' => 'List Users',

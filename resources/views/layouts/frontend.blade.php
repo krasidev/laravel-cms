@@ -54,6 +54,12 @@
                                 </a>
 
                                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                                    <a href="{{ route('backend.profile.edit') }}" class="dropdown-item">
+                                        <i class="fas fa-user mr-2"></i>{{ __('menu.backend.profile.edit') }}
+                                    </a>
+
+                                    <hr class="dropdown-divider">
+
                                     <a href="{{ route('logout') }}" class="dropdown-item"
                                        onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
                                        <i class="fas fa-power-off mr-2"></i>{{ __('Logout') }}

@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Backend\ProfileController;
 use App\Http\Controllers\Backend\UserController;
 use Illuminate\Support\Facades\Route;
 
@@ -25,6 +26,11 @@ Route::group([
     'as' => 'backend.',
     'middleware' => ['auth']
 ], function() {
+    // Profile
+    Route::get('profile', [ProfileController::class, 'edit'])->name('profile.edit');
+    Route::put('profile', [ProfileController::class, 'update'])->name('profile.update');
+    Route::put('profile/update-password', [ProfileController::class, 'updatePassword'])->name('profile.update-password');
+
     // User is admin
     Route::middleware('can:manage_system')->group(function() {
         // Users

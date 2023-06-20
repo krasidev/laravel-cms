@@ -31,9 +31,15 @@
                     </a>
 
                     <div class="dropdown-menu dropdown-menu-right position-absolute" aria-labelledby="navbarDropdown">
+                        <a href="{{ route('backend.profile.edit') }}" class="dropdown-item @if(request()->routeIs('backend.profile.edit')) active @endif">
+                            <i class="fas fa-user mr-2"></i>{{ __('menu.backend.profile.edit') }}
+                        </a>
+
+                        <hr class="dropdown-divider">
+
                         <a href="{{ route('logout') }}" class="dropdown-item"
                            onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
-                           <i class="fas fa-power-off mr-1"></i>{{ __('Logout') }}
+                           <i class="fas fa-power-off mr-2"></i>{{ __('Logout') }}
                         </a>
 
                         <form action="{{ route('logout') }}" method="POST" id="logout-form" class="d-none">
