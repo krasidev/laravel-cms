@@ -1,6 +1,7 @@
 <?php
 
 return [
+    'choose-file' => 'Choose file',
     'backend' => [
         'profile' => [
             'labels' => [
@@ -13,6 +14,42 @@ return [
             'buttons' => [
                 'update' => 'Update',
                 'update-password' => 'Update Password'
+            ]
+        ],
+        'projects' => [
+            'table' => [
+                'filters' => [
+                    'trashed' => [
+                        'options' => [
+                            'all' => 'All Projects',
+                            'deleted' => 'Deleted Projects'
+                        ]
+                    ]
+                ],
+                'headers' => [
+                    'id' => 'ID',
+                    'order' => 'Order',
+                    'name' => 'Name',
+                    'slug' => 'Slug',
+                    'created_at' => 'Created At',
+                    'updated_at' => 'Updated At',
+                    'deleted_at' => 'Deleted At',
+                    'actions' => 'Actions'
+                ]
+            ],
+            'labels' => [
+                'name' => 'Name',
+                'slug' => 'Slug',
+                'url' => 'URL',
+                'image' => 'Image',
+                'short_description' => 'Short description',
+                'description' => 'Description'
+            ],
+            'buttons' => [
+                'store' => 'Create',
+                'update' => 'Update',
+                'destroy' => 'Delete',
+                'restore' => 'Restore'
             ]
         ],
         'users' => [
@@ -47,6 +84,11 @@ return [
                 'destroy' => 'Delete',
                 'restore' => 'Restore'
             ]
+        ]
+    ],
+    'frontend' => [
+        'projects' => [
+            'emptyData' => 'No Projects Uploaded'
         ]
     ]
 ];

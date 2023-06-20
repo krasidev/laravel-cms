@@ -7,7 +7,22 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="@yield('url', url()->full())">
+    <meta property="og:title" content="{{ config('app.name', 'Laravel') }} - @yield('title')">
+    <meta property="og:description" content="@yield('description', config('system.description', 'Description'))">
+    @hasSection('image')<meta property="og:image" content="@yield('image')">@endif
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="@yield('url', url('index.php'))">
+    <meta property="twitter:title" content="{{ config('app.name', 'Laravel') }} - @yield('title')">
+    <meta property="twitter:description" content="@yield('description', config('system.description', 'Description'))">
+    @hasSection('image')<meta property="twitter:image" content="@yield('image')">@endif
+
     <title>{{ config('app.name', 'Laravel') }} - @yield('title')</title>
+    <meta name="description" content="@yield('description', config('system.description', 'Description'))">
 
     <!-- Styles -->
     <link rel="stylesheet" href="{{ asset('css/frontend.css') }}">

@@ -77,6 +77,32 @@
                                 @can('manage_system')
                                     <li class="nav-item">
                                         @php
+                                            $isOpenCollapseProjects = request()->routeIs('backend.projects.*');
+                                        @endphp
+                                        <a href="#collapseProjects" class="nav-link d-flex align-items-center @if(!$isOpenCollapseProjects) collapsed @endif" data-toggle="collapse" aria-expanded="{{ $isOpenCollapseProjects ? 'true' : 'false' }}" aria-controls="collapseProjects">
+                                            <i class="fas fa-diagram-project mr-2"></i>
+                                            {{ __('menu.backend.projects.text') }}
+                                            <i class="plus-minus-rotate flex-shrink-0 ml-auto collapsed"></i>
+                                        </a>
+                                        <div id="collapseProjects" class="collapse @if($isOpenCollapseProjects) show @endif">
+                                            <ul class="nav flex-column">
+                                                <li class="nav-item">
+                                                    <a href="{{ route('backend.projects.index') }}" class="nav-link @if(request()->routeIs('backend.projects.index')) active @endif">
+                                                        {{ __('menu.backend.projects.index') }}
+                                                    </a>
+                                                </li>
+
+                                                <li class="nav-item">
+                                                    <a href="{{ route('backend.projects.create') }}" class="nav-link @if(request()->routeIs('backend.projects.create')) active @endif">
+                                                        {{ __('menu.backend.projects.create') }}
+                                                    </a>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </li>
+
+                                    <li class="nav-item">
+                                        @php
                                             $isOpenCollapseUsers = request()->routeIs('backend.users.*');
                                         @endphp
                                         <a href="#collapseUsers" class="nav-link d-flex align-items-center @if(!$isOpenCollapseUsers) collapsed @endif" data-toggle="collapse" aria-expanded="{{ $isOpenCollapseUsers ? 'true' : 'false' }}" aria-controls="collapseUsers">

@@ -1,7 +1,9 @@
 <?php
 
 use App\Http\Controllers\Backend\ProfileController;
+use App\Http\Controllers\Backend\ProjectController as BackendProjectController;
 use App\Http\Controllers\Backend\UserController;
+use App\Http\Controllers\Frontend\ProjectController as FrontendProjectController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -33,6 +35,12 @@ Route::group([
 
     // User is admin
     Route::middleware('can:manage_system')->group(function() {
+        // Projects
+        Route::resource('projects', BackendProjectController::class)->except('show');
+        Route::patch('projects/{project}/restore', [BackendProjectController::class, 'restore'])->name('projects.restore');
+        Route::delete('projects/{project}/force-delete', [BackendProjectController::class, 'forceDelete'])->name('projects.force-delete');
+        Route::post('projects/reorder', [BackendProjectController::class, 'reorder'])->name('projects.reorder');
+
         // Users
         Route::resource('users', UserController::class);
         Route::patch('users/{user}/restore', [UserController::class, 'restore'])->name('users.restore');
@@ -40,6 +48,9 @@ Route::group([
     });
 });
 
-Route::get('/', function () {
-    return view('welcome');
+// Frontend
+Route::name('frontend.')->group(function() {
+    // Projects
+    Route::get('/', [FrontendProjectController::class, 'index'])->name('projects.index');
+    Route::get('/projects/{project}', [FrontendProjectController::class, 'show'])->name('projects.show');
 });
