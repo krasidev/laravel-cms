@@ -13,6 +13,11 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+// Auth forms
+Auth::routes([
+    'reset' => false
+]);
+
 Route::get('/', function () {
     return view('welcome');
 });
