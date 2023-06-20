@@ -5,6 +5,7 @@ try {
     window.Popper = require('popper.js').default;
     require('bootstrap');
     require('bootstrap-datepicker');
+    require('bootstrap-datetime-picker');
 } catch (e) {}
 
 /**
