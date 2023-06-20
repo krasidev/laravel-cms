@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "d9d15955fca3cf65c8c7496f82717ad6",
+    "content-hash": "4ac7106b95dc80b54e5e9bfae5e8df1f",
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -1381,6 +1381,50 @@
                 "source": "https://github.com/laravel/ui/tree/v3.4.6"
             },
             "time": "2022-05-20T13:38:08+00:00"
+        },
+        {
+            "name": "lazyelephpant/repository",
+            "version": "v1.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/LazyElePHPant/repository.git",
+                "reference": "1addcff688d6ce2576bd7547d5990b300bf43830"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/LazyElePHPant/repository/zipball/1addcff688d6ce2576bd7547d5990b300bf43830",
+                "reference": "1addcff688d6ce2576bd7547d5990b300bf43830",
+                "shasum": ""
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "LazyElePHPant\\Repository\\RepositoryServiceProvider"
+                    ],
+                    "aliases": {
+                        "Repository": "LazyElePHPant\\Repository\\Facade"
+                    }
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "LazyElePHPant\\Repository\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "authors": [
+                {
+                    "name": "Kevin Pimentel",
+                    "email": "kevin@kevinpimentel.com"
+                }
+            ],
+            "description": "Laravel package to facilitate the repository design pattern functionality across multiple projects.",
+            "support": {
+                "issues": "https://github.com/LazyElePHPant/repository/issues",
+                "source": "https://github.com/LazyElePHPant/repository/tree/v1.0"
+            },
+            "time": "2019-07-31T21:44:39+00:00"
         },
         {
             "name": "league/commonmark",

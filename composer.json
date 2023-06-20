@@ -12,6 +12,7 @@
         "laravel/sanctum": "^2.11",
         "laravel/tinker": "^2.5",
         "laravel/ui": "^3.4",
+        "lazyelephpant/repository": "^1.0",
         "yajra/laravel-datatables-oracle": "^9.21"
     },
     "require-dev": {
