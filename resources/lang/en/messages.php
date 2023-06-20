@@ -17,6 +17,12 @@ return [
                 'text' => 'Profile password updated successfully!'
             ]
         ],
+        'google-analytics' => [
+            'sync_success' => [
+                'title' => '',
+                'text' => 'Synchronization successfully!'
+            ]
+        ],
         'projects' => [
             'store_success' => [
                 'title' => '',
