@@ -26594,3 +26594,109 @@ body.tox-dialog__disable-scroll {
 .plus-minus-rotate [aria-expanded=true]::after, [aria-expanded=true] .plus-minus-rotate::after, *:not([aria-expanded]) > .plus-minus-rotate:not([data-target]):hover::after {
   transform: rotate(180deg);
 }
+
+.datepicker,
+.datetimepicker {
+  width: 260px;
+  padding: 5px;
+  border-radius: 0.3rem;
+}
+.datepicker table,
+.datetimepicker table {
+  width: 100%;
+}
+.datepicker th,
+.datepicker td,
+.datetimepicker th,
+.datetimepicker td {
+  width: 35px;
+  height: 35px;
+  border-radius: 3px;
+  font-weight: normal;
+}
+.datepicker th.switch,
+.datetimepicker th.switch {
+  width: auto;
+}
+.datepicker .prev,
+.datepicker .next,
+.datetimepicker .prev,
+.datetimepicker .next {
+  font-size: 0;
+  color: transparent;
+}
+.datepicker .prev span,
+.datepicker .next span,
+.datetimepicker .prev span,
+.datetimepicker .next span {
+  display: none;
+}
+.datepicker .prev::before,
+.datepicker .next::before,
+.datetimepicker .prev::before,
+.datetimepicker .next::before {
+  font-family: "Font Awesome 6 Free";
+  font-weight: 900;
+  font-style: normal;
+  font-variant: normal;
+  font-size: 0.9rem;
+  line-height: 1;
+  text-rendering: auto;
+  color: #212529;
+}
+.datepicker .prev::before,
+.datetimepicker .prev::before {
+  content: "\f104";
+}
+.datepicker .next::before,
+.datetimepicker .next::before {
+  content: "\f105";
+}
+
+.bootstrap-timepicker-widget {
+  padding: 5px;
+  border-radius: 0.3rem;
+}
+.bootstrap-timepicker-widget [data-action] {
+  border: none;
+}
+.bootstrap-timepicker-widget [data-action] span {
+  display: none;
+}
+.bootstrap-timepicker-widget [data-action]::before {
+  font-family: "Font Awesome 6 Free";
+  font-weight: 900;
+  font-style: normal;
+  font-variant: normal;
+  font-size: 0.9rem;
+  line-height: 1;
+  text-rendering: auto;
+  color: #212529;
+}
+.bootstrap-timepicker-widget tr:first-child [data-action]::before {
+  content: "\f106";
+}
+.bootstrap-timepicker-widget tr:last-child [data-action]::before {
+  content: "\f107";
+}
+.bootstrap-timepicker-widget table td input {
+  display: block;
+  width: 35px;
+  height: calc(1.6em + 0.75rem + 2px);
+  margin: 0 auto;
+  font-size: 0.9rem;
+  font-weight: 400;
+  line-height: 1.6;
+  color: #495057;
+  background-color: #fff;
+  background-clip: padding-box;
+  border: 1px solid #ced4da;
+  border-radius: 0.25rem;
+  transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+}
+.bootstrap-timepicker-widget table td input:focus {
+  color: #495057;
+  background-color: #fff;
+  border-color: #80bdff;
+  outline: 0;
+}
