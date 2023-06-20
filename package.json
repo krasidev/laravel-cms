@@ -27,7 +27,8 @@
         "sass": "^1.32.11",
         "sass-loader": "^11.0.1",
         "select2": "^4.1.0-rc.0",
-        "sweetalert2": "^10.16.11"
+        "sweetalert2": "^10.16.11",
+        "tinymce": "^5.0.16"
     },
     "browserslist": {
         "development": [

@@ -13,6 +13,8 @@ try {
     require('datatables.net-rowreorder-bs4');
     require('select2');
     window.Swal = require('sweetalert2');
+    require('tinymce');
+    require('tinymce/themes/silver');
 } catch (e) {}
 
 /**
