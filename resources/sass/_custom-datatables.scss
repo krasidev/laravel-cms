@@ -1,0 +1,86 @@
+div.dataTables_wrapper {
+    .dataTables_length label,
+    .dataTables_filter label {
+        margin-bottom: 0;
+    }
+
+    div.dataTables_filter input {
+        width: 100%;
+        margin-left: 0;
+    }
+
+    .dataTable th,
+    .dataTable td {
+        vertical-align: middle;
+    }
+
+    div.dataTables_processing {
+        left: 0;
+        width: 100%;
+        line-height: 100%;
+        margin-left: auto;
+        margin-right: auto;
+        padding: 0;
+        border: none;
+        background: -webkit-gradient(linear, left top, right top, color-stop(0%, rgba(255, 255, 255, 0)), color-stop(25%, rgba(255, 255, 255, 0.9)), color-stop(75%, rgba(255, 255, 255, 0.9)), color-stop(100%, rgba(255, 255, 255, 0)));
+        background: -webkit-linear-gradient(left, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 0.9) 25%, rgba(255, 255, 255, 0.9) 75%, rgba(255, 255, 255, 0) 100%);
+        background: -moz-linear-gradient(left, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 0.9) 25%, rgba(255, 255, 255, 0.9) 75%, rgba(255, 255, 255, 0) 100%);
+        background: -ms-linear-gradient(left, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 0.9) 25%, rgba(255, 255, 255, 0.9) 75%, rgba(255, 255, 255, 0) 100%);
+        background: -o-linear-gradient(left, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 0.9) 25%, rgba(255, 255, 255, 0.9) 75%, rgba(255, 255, 255, 0) 100%);
+        background: linear-gradient(to right, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 0.9) 25%, rgba(255, 255, 255, 0.9) 75%, rgba(255, 255, 255, 0) 100%);
+
+        :not(.spinner-border) {
+            display: none;
+        }
+    }
+
+    .dataTables_paginate {
+        padding-top: 0.5rem;
+
+        .pagination {
+            margin: 0;
+        }
+
+        .paginate_button {
+            padding-left: 2px;
+
+            .page-link {
+                line-height: 100%;
+                border: 0;
+                border-radius: .25rem;
+
+                &:focus {
+                    box-shadow: none;
+                }
+            }
+        }
+    }
+}
+
+.table.dataTable {
+    width: 100% !important;
+    margin-top: 0 !important;
+    margin-bottom: 0 !important;
+    border-collapse: collapse;
+
+    >tbody>tr.child ul.dtr-details {
+        display: block;
+
+        .dtr-title::after {
+            content: ':';
+        }
+
+        >li:last-child {
+            padding-bottom: 0;
+        }
+    }
+}
+
+.table thead th {
+    border-bottom-width: 0;
+}
+
+.table-bordered {
+    border-top-width: 0;
+    border-right-width: 0;
+}
