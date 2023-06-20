@@ -24,7 +24,8 @@
         "popper.js": "^1.16.1",
         "resolve-url-loader": "^5.0.0",
         "sass": "^1.32.11",
-        "sass-loader": "^11.0.1"
+        "sass-loader": "^11.0.1",
+        "select2": "^4.1.0-rc.0"
     },
     "browserslist": {
         "development": [
