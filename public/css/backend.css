@@ -26563,3 +26563,34 @@ body.tox-dialog__disable-scroll {
 .button_hamburger_htra.active span {
   transform: rotate(180deg);
 }
+
+.plus-minus-rotate {
+  display: block;
+  width: 15px;
+  height: 15px;
+  cursor: pointer;
+  position: relative;
+}
+.plus-minus-rotate::before, .plus-minus-rotate::after {
+  content: "";
+  background-color: rgba(0, 0, 0, 0.125);
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  margin: auto;
+  transition: transform 0.25s ease-out;
+}
+.plus-minus-rotate::before {
+  width: 1px;
+}
+.plus-minus-rotate::after {
+  height: 1px;
+}
+.plus-minus-rotate [aria-expanded=true]::before, [aria-expanded=true] .plus-minus-rotate::before, *:not([aria-expanded]) > .plus-minus-rotate:not([data-target]):hover::before {
+  transform: rotate(90deg);
+}
+.plus-minus-rotate [aria-expanded=true]::after, [aria-expanded=true] .plus-minus-rotate::after, *:not([aria-expanded]) > .plus-minus-rotate:not([data-target]):hover::after {
+  transform: rotate(180deg);
+}
