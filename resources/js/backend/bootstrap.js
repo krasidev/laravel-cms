@@ -4,6 +4,9 @@ try {
     window.$ = window.jQuery = require('jquery');
     window.Popper = require('popper.js').default;
     require('bootstrap');
+    require('bootstrap-datepicker');
+    require('bootstrap-datetime-picker');
+    require('bootstrap-timepicker');
 } catch (e) {}
 
 /**
