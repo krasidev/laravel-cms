@@ -34,13 +34,17 @@
                         @guest
                             @if (Route::has('login'))
                                 <li class="nav-item">
-                                    <a href="{{ route('login') }}" class="nav-link">{{ __('Login') }}</a>
+                                    <a href="{{ route('login') }}" class="nav-link">
+                                        <i class="fas fa-sign-in mr-2"></i>{{ __('Login') }}
+                                    </a>
                                 </li>
                             @endif
 
                             @if (Route::has('register'))
                                 <li class="nav-item">
-                                    <a href="{{ route('register') }}" class="nav-link">{{ __('Register') }}</a>
+                                    <a href="{{ route('register') }}" class="nav-link">
+                                        <i class="fas fa-user-plus mr-2"></i>{{ __('Register') }}
+                                    </a>
                                 </li>
                             @endif
                         @else
@@ -52,7 +56,7 @@
                                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
                                     <a href="{{ route('logout') }}" class="dropdown-item"
                                        onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
-                                        {{ __('Logout') }}
+                                       <i class="fas fa-power-off mr-2"></i>{{ __('Logout') }}
                                     </a>
 
                                     <form action="{{ route('logout') }}" method="POST" id="logout-form" class="d-none">
