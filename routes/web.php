@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Backend\UserController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -17,6 +18,21 @@ use Illuminate\Support\Facades\Route;
 Auth::routes([
     'reset' => false
 ]);
+
+// Backend
+Route::group([
+    'prefix' => 'admin',
+    'as' => 'backend.',
+    'middleware' => ['auth']
+], function() {
+    // User is admin
+    Route::middleware('can:manage_system')->group(function() {
+        // Users
+        Route::resource('users', UserController::class);
+        Route::patch('users/{user}/restore', [UserController::class, 'restore'])->name('users.restore');
+        Route::delete('users/{user}/force-delete', [UserController::class, 'forceDelete'])->name('users.force-delete');
+    });
+});
 
 Route::get('/', function () {
     return view('welcome');
