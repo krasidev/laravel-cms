@@ -9,6 +9,7 @@ try {
     require('bootstrap-timepicker');
     require('datatables.net-bs4');
     require('datatables.net-responsive-bs4');
+    require('datatables.net-rowreorder-bs4');
 } catch (e) {}
 
 /**
