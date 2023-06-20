@@ -26700,3 +26700,71 @@ body.tox-dialog__disable-scroll {
   border-color: #80bdff;
   outline: 0;
 }
+
+div.dataTables_wrapper .dataTables_length label,
+div.dataTables_wrapper .dataTables_filter label {
+  margin-bottom: 0;
+}
+div.dataTables_wrapper div.dataTables_filter input {
+  width: 100%;
+  margin-left: 0;
+}
+div.dataTables_wrapper .dataTable th,
+div.dataTables_wrapper .dataTable td {
+  vertical-align: middle;
+}
+div.dataTables_wrapper div.dataTables_processing {
+  left: 0;
+  width: 100%;
+  line-height: 100%;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 0;
+  border: none;
+  background: linear-gradient(to right, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 0.9) 25%, rgba(255, 255, 255, 0.9) 75%, rgba(255, 255, 255, 0) 100%);
+}
+div.dataTables_wrapper div.dataTables_processing :not(.spinner-border) {
+  display: none;
+}
+div.dataTables_wrapper .dataTables_paginate {
+  padding-top: 0.5rem;
+}
+div.dataTables_wrapper .dataTables_paginate .pagination {
+  margin: 0;
+}
+div.dataTables_wrapper .dataTables_paginate .paginate_button {
+  padding-left: 2px;
+}
+div.dataTables_wrapper .dataTables_paginate .paginate_button .page-link {
+  line-height: 100%;
+  border: 0;
+  border-radius: 0.25rem;
+}
+div.dataTables_wrapper .dataTables_paginate .paginate_button .page-link:focus {
+  box-shadow: none;
+}
+
+.table.dataTable {
+  width: 100% !important;
+  margin-top: 0 !important;
+  margin-bottom: 0 !important;
+  border-collapse: collapse;
+}
+.table.dataTable > tbody > tr.child ul.dtr-details {
+  display: block;
+}
+.table.dataTable > tbody > tr.child ul.dtr-details .dtr-title::after {
+  content: ":";
+}
+.table.dataTable > tbody > tr.child ul.dtr-details > li:last-child {
+  padding-bottom: 0;
+}
+
+.table thead th {
+  border-bottom-width: 0;
+}
+
+.table-bordered {
+  border-top-width: 0;
+  border-right-width: 0;
+}
