@@ -14,7 +14,7 @@
                     <div class="card mb-4 shadow-sm d-flex flex-row flex-wrap">
                         @if ($project->imagePathWithTimestamp)
                             <a href="{{ route('frontend.projects.show', ['project' => $project->slug]) }}" target="_blank" class="card-link">
-                                <img src="{{ $project->imagePathWithTimestamp }}" class="card-img-top border-bottom" />
+                                <img src="{{ asset($project->imagePathWithTimestamp) }}" class="card-img-top border-bottom" />
                             </a>
                         @endif
 

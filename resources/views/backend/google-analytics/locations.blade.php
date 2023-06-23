@@ -17,7 +17,7 @@
         <div class="row">
             <div class="col-12 col-sm-4">
                 <div class="form-group">
-                    <select name="continent" class="form-control datatable-filters">
+                    <select name="continent" class="form-control datatable-filters select2" data-placeholder="{{ __('content.backend.google-analytics.table.filters.options.continent') }}">
                         <option value="">{{ __('content.backend.google-analytics.table.filters.options.continent') }}</option>
                         @foreach ($locationContinents as $locationContinent)
                             <option value="{{ $locationContinent->continent }}">{{ $locationContinent->continent }}</option>

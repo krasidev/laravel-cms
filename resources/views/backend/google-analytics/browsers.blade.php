@@ -17,7 +17,7 @@
         <div class="row">
             <div class="col-12 col-sm-4">
                 <div class="form-group">
-                    <select name="name" class="form-control datatable-filters">
+                    <select name="name" class="form-control datatable-filters select2" data-placeholder="{{ __('content.backend.google-analytics.table.filters.options.browser') }}">
                         <option value="">{{ __('content.backend.google-analytics.table.filters.options.browser') }}</option>
                         @foreach ($browsers as $browser)
                             <option value="{{ $browser->name }}">{{ $browser->name }}</option>
