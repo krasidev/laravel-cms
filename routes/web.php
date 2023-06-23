@@ -54,16 +54,19 @@ Route::group([
         });
     });
 
-    // User is admin
+    // Projects
+    Route::resource('projects', BackendProjectController::class)->only('index');
     Route::middleware('can:manage_system')->group(function() {
-        // Projects
-        Route::resource('projects', BackendProjectController::class)->except('show');
+        Route::resource('projects', BackendProjectController::class)->except(['index', 'show']);
         Route::patch('projects/{project}/restore', [BackendProjectController::class, 'restore'])->name('projects.restore');
         Route::delete('projects/{project}/force-delete', [BackendProjectController::class, 'forceDelete'])->name('projects.force-delete');
-        Route::post('projects/reorder', [BackendProjectController::class, 'reorder'])->name('projects.reorder');
+    });
+    Route::post('projects/reorder', [BackendProjectController::class, 'reorder'])->name('projects.reorder');
 
-        // Users
-        Route::resource('users', UserController::class);
+    // Users
+    Route::resource('users', UserController::class)->only('index');
+    Route::middleware('can:manage_system')->group(function() {
+        Route::resource('users', UserController::class)->except(['index', 'show']);
         Route::patch('users/{user}/restore', [UserController::class, 'restore'])->name('users.restore');
         Route::delete('users/{user}/force-delete', [UserController::class, 'forceDelete'])->name('users.force-delete');
     });
