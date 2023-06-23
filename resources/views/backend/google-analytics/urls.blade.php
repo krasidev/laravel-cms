@@ -17,7 +17,7 @@
         <div class="row">
             <div class="col-12 col-sm-4">
                 <div class="form-group">
-                    <select name="path" class="form-control datatable-filters">
+                    <select name="path" class="form-control datatable-filters select2" data-placeholder="{{ __('content.backend.google-analytics.table.filters.options.path') }}">
                         <option value="">{{ __('content.backend.google-analytics.table.filters.options.path') }}</option>
                         @foreach ($urls as $url)
                             <option value="{{ $url->path }}">{{ $url->path }}</option>

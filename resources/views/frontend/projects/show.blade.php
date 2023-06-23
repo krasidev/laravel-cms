@@ -15,7 +15,7 @@
             @if ($project->imagePathWithTimestamp)
                 <div class="col">
                     <a href="{{ $project->url }}" class="card-link">
-                        <img src="{{ $project->imagePathWithTimestamp }}" class="img-thumbnail" />
+                        <img src="{{ asset($project->imagePathWithTimestamp) }}" class="img-thumbnail" />
                     </a>
                 </div>
             @endif

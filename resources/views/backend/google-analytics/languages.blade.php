@@ -17,7 +17,7 @@
         <div class="row">
             <div class="col-12 col-sm-4">
                 <div class="form-group">
-                    <select name="name" class="form-control datatable-filters">
+                    <select name="name" class="form-control datatable-filters select2" data-placeholder="{{ __('content.backend.google-analytics.table.filters.options.language') }}">
                         <option value="">{{ __('content.backend.google-analytics.table.filters.options.language') }}</option>
                         @foreach ($languages as $language)
                             <option value="{{ $language->name }}">{{ $language->name }}</option>
