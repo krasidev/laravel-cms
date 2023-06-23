@@ -17,7 +17,7 @@
         <div class="row">
             <div class="col-12 col-sm-4">
                 <div class="form-group">
-                    <select name="name" class="form-control datatable-filters">
+                    <select name="name" class="form-control datatable-filters select2" data-placeholder="{{ __('content.backend.google-analytics.table.filters.options.device-category') }}">
                         <option value="">{{ __('content.backend.google-analytics.table.filters.options.device-category') }}</option>
                         @foreach ($deviceCategories as $deviceCategory)
                             <option value="{{ $deviceCategory->name }}">{{ $deviceCategory->name }}</option>

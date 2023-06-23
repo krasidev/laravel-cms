@@ -16,8 +16,8 @@
             <div class="row">
                 <div class="col-12 col-sm-4">
                     <div class="form-group">
-                        <select name="trashed" class="form-control projects-table-filters">
-                            <option value="0">{{ __('content.backend.projects.table.filters.trashed.options.all') }}</option>
+                        <select name="trashed" class="form-control projects-table-filters select2" data-placeholder="{{ __('content.backend.projects.table.filters.trashed.options.all') }}">
+                            <option value="">{{ __('content.backend.projects.table.filters.trashed.options.all') }}</option>
                             <option value="1">{{ __('content.backend.projects.table.filters.trashed.options.deleted') }}</option>
                         </select>
                     </div>

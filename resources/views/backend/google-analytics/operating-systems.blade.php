@@ -17,7 +17,7 @@
         <div class="row">
             <div class="col-12 col-sm-4">
                 <div class="form-group">
-                    <select name="name" class="form-control datatable-filters">
+                    <select name="name" class="form-control datatable-filters select2" data-placeholder="{{ __('content.backend.google-analytics.table.filters.options.operating-system') }}">
                         <option value="">{{ __('content.backend.google-analytics.table.filters.options.operating-system') }}</option>
                         @foreach ($operatingSystems as $operatingSystem)
                             <option value="{{ $operatingSystem->name }}">{{ $operatingSystem->name }}</option>

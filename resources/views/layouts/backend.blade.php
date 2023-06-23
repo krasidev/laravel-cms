@@ -196,6 +196,12 @@
         </div>
     </div>
 
+    <script>
+        $('.select2').select2({
+            allowClear: true
+        });
+    </script>
+
     @if (session('success'))
         <script>
             Swal.fire({
