@@ -93,7 +93,6 @@ class GoogleAnalyticsSeeder extends Seeder
         $projects = Project::all();
 
         if ($projects->isNotEmpty()) {
-            $data = [];
             $startDate = Carbon::now()->subDays(self::SUB_DAYS)->format('Y-m-d');
             $endDate = Carbon::now()->format('Y-m-d');
             $period = CarbonPeriod::create($startDate, $endDate);
@@ -104,77 +103,73 @@ class GoogleAnalyticsSeeder extends Seeder
             $countOperatingSystems = count(self::OPERATING_SYSTEMS) - 1;
 
             foreach ($period as $date) {
+                $sumVisitors = 0;
+                $sumPageViews = 0;
                 $date = $date->format('Y-m-d');
-
-                foreach ($projects as $project) {
-                    $data[] = [
-                        'date' => $date,
-                        'path' => route('frontend.projects.show', ['project' => $project->slug], false),
-                        'title' => $project->name,
-                        'visitors' => rand(1, 5),
-                        'pageviews' => rand(10, 20)
-                    ];
-                }
-            }
-
-            foreach ($data as $single) {
                 $location = self::LOCATIONS[rand(0, $countLocations)];
                 $language = self::LANGUAGES[rand(0, $countLanguages)];
                 $browser = self::BROWSERS[rand(0, $countBrowsers)];
                 $deviceCategory = self::DEVICE_CATEGORIES[rand(0, $countDeviceCategories)];
                 $operatingSystem = self::OPERATING_SYSTEMS[rand(0, $countOperatingSystems)];
 
-                GoogleAnalyticsUrl::updateOrCreate([
-                    'date' => $single['date'],
-                    'path' => $single['path'],
-                    'title' => $single['title']
-                ], [
-                    'visitors' => $single['visitors'],
-                    'pageviews' => $single['pageviews']
-                ]);
+                foreach ($projects as $project) {
+                    $visitors = rand(1, 5);
+                    $pageViews = rand(10, 20);
+                    $sumVisitors += $visitors;
+                    $sumPageViews += $pageViews;
+
+                    GoogleAnalyticsUrl::updateOrCreate([
+                        'date' => $date,
+                        'path' => route('frontend.projects.show', ['project' => $project->slug], false),
+                        'title' => $project->name
+                    ], [
+                        'visitors' => $visitors,
+                        'pageviews' => $pageViews
+                    ]);
+                }
 
                 GoogleAnalyticsLocation::updateOrCreate([
-                    'date' => $single['date'],
+                    'date' => $date,
                     'continent' => $location['continent'],
                     'country' => $location['country'],
                     'city' => $location['city']
                 ], [
-                    'visitors' => $single['visitors'],
-                    'pageviews' => $single['pageviews']
+                    'visitors' => $sumVisitors,
+                    'pageviews' => $sumPageViews
                 ]);
 
                 GoogleAnalyticsLanguage::updateOrCreate([
-                    'date' => $single['date'],
+                    'date' => $date,
                     'name' => $language['name']
                 ], [
-                    'visitors' => $single['visitors'],
-                    'pageviews' => $single['pageviews']
+                    'visitors' => $sumVisitors,
+                    'pageviews' => $sumPageViews
                 ]);
 
                 GoogleAnalyticsBrowser::updateOrCreate([
-                    'date' => $single['date'],
+                    'date' => $date,
                     'name' => $browser['name'],
                     'version' => $browser['version']
                 ], [
-                    'visitors' => $single['visitors'],
-                    'pageviews' => $single['pageviews']
+                    'visitors' => $sumVisitors,
+                    'pageviews' => $sumPageViews
                 ]);
 
                 GoogleAnalyticsDeviceCategory::updateOrCreate([
-                    'date' => $single['date'],
+                    'date' => $date,
                     'name' => $deviceCategory['name'],
                 ], [
-                    'visitors' => $single['visitors'],
-                    'pageviews' => $single['pageviews']
+                    'visitors' => $sumVisitors,
+                    'pageviews' => $sumPageViews
                 ]);
 
                 GoogleAnalyticsOperatingSystem::updateOrCreate([
-                    'date' => $single['date'],
+                    'date' => $date,
                     'name' => $operatingSystem['name'],
                     'version' => $operatingSystem['version']
                 ], [
-                    'visitors' => $single['visitors'],
-                    'pageviews' => $single['pageviews']
+                    'visitors' => $sumVisitors,
+                    'pageviews' => $sumPageViews
                 ]);
             }
         }
