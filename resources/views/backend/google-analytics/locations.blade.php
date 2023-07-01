@@ -60,6 +60,23 @@
 <script>
     $(function() {
         var dataTableFilters = $('.datatable-filters');
+
+        var chart = function () {
+            var data = {};
+
+            dataTableFilters.each(function(index, element) {
+                data[element.name] = element.value;
+            });
+
+            $.ajax({
+                url: '{!! route('backend.google-analytics.locations', ['highcharts']) !!}',
+                data: data,
+                success: function (data) {
+                    createChart(data);
+                }
+            });
+        };
+
         var locationsTable = $('#locations-table').DataTable({
             serverSide: true,
             processing: true,
@@ -68,14 +85,6 @@
                 data: function (data) {
                     dataTableFilters.each(function(index, element) {
                         data[element.name] = element.value;
-                    });
-
-                    $.ajax({
-                        url: '{!! route('backend.google-analytics.locations', ['highcharts']) !!}',
-                        data: data,
-                        success: function (data) {
-                            createChart(data);
-                        }
                     });
                 }
             },
@@ -89,8 +98,11 @@
         });
 
         dataTableFilters.on('change', function() {
+            chart();
             locationsTable.draw();
         });
+
+        chart();
     });
 </script>
 @endsection
