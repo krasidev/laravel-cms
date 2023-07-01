@@ -17,7 +17,15 @@ return [
             ]
         ],
         'google-analytics' => [
+            'highchart' => [
+                'title' => 'Summary by date',
+                'series' => [
+                    'visitors' => 'Visitors',
+                    'pageviews' => 'Page Views'
+                ]
+            ],
             'table' => [
+                'title' => 'Total data',
                 'filters' => [
                     'options' => [
                         'path' => 'All URLs',

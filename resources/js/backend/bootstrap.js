@@ -11,6 +11,7 @@ try {
     require('datatables.net-bs4');
     require('datatables.net-responsive-bs4');
     require('datatables.net-rowreorder-bs4');
+    require('highcharts');
     require('select2');
     window.Swal = require('sweetalert2');
     require('tinymce');
