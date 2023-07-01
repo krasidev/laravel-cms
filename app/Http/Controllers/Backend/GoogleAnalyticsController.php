@@ -42,6 +42,16 @@ class GoogleAnalyticsController extends Controller
                 $urls->whereBetween('date', [$startDate, $endDate]);
             }
 
+            if ($request->has('highcharts')) {
+                $urls->SummaryByDate();
+
+                return [
+                    'categories' => $urls->pluck('categories')->toJson(),
+                    'visitors' => $urls->pluck('visitors')->toJson(JSON_NUMERIC_CHECK),
+                    'pageviews' => $urls->pluck('pageviews')->toJson(JSON_NUMERIC_CHECK)
+                ];
+            }
+
             $urls->totalData();
 
             $datatable = datatables()->eloquent($urls);
@@ -68,6 +78,16 @@ class GoogleAnalyticsController extends Controller
 
             if ($startDate && $endDate) {
                 $locations->whereBetween('date', [$startDate, $endDate]);
+            }
+
+            if ($request->has('highcharts')) {
+                $locations->SummaryByDate();
+
+                return [
+                    'categories' => $locations->pluck('categories')->toJson(),
+                    'visitors' => $locations->pluck('visitors')->toJson(JSON_NUMERIC_CHECK),
+                    'pageviews' => $locations->pluck('pageviews')->toJson(JSON_NUMERIC_CHECK)
+                ];
             }
 
             $locations->totalData();
@@ -98,6 +118,16 @@ class GoogleAnalyticsController extends Controller
                 $languages->whereBetween('date', [$startDate, $endDate]);
             }
 
+            if ($request->has('highcharts')) {
+                $languages->SummaryByDate();
+
+                return [
+                    'categories' => $languages->pluck('categories')->toJson(),
+                    'visitors' => $languages->pluck('visitors')->toJson(JSON_NUMERIC_CHECK),
+                    'pageviews' => $languages->pluck('pageviews')->toJson(JSON_NUMERIC_CHECK)
+                ];
+            }
+
             $languages->totalData();
 
             $datatable = datatables()->eloquent($languages);
@@ -124,6 +154,16 @@ class GoogleAnalyticsController extends Controller
 
             if ($startDate && $endDate) {
                 $browsers->whereBetween('date', [$startDate, $endDate]);
+            }
+
+            if ($request->has('highcharts')) {
+                $browsers->SummaryByDate();
+
+                return [
+                    'categories' => $browsers->pluck('categories')->toJson(),
+                    'visitors' => $browsers->pluck('visitors')->toJson(JSON_NUMERIC_CHECK),
+                    'pageviews' => $browsers->pluck('pageviews')->toJson(JSON_NUMERIC_CHECK)
+                ];
             }
 
             $browsers->totalData();
@@ -154,6 +194,16 @@ class GoogleAnalyticsController extends Controller
                 $deviceCategories->whereBetween('date', [$startDate, $endDate]);
             }
 
+            if ($request->has('highcharts')) {
+                $deviceCategories->SummaryByDate();
+
+                return [
+                    'categories' => $deviceCategories->pluck('categories')->toJson(),
+                    'visitors' => $deviceCategories->pluck('visitors')->toJson(JSON_NUMERIC_CHECK),
+                    'pageviews' => $deviceCategories->pluck('pageviews')->toJson(JSON_NUMERIC_CHECK)
+                ];
+            }
+
             $deviceCategories->totalData();
 
             $datatable = datatables()->eloquent($deviceCategories);
@@ -180,6 +230,16 @@ class GoogleAnalyticsController extends Controller
 
             if ($startDate && $endDate) {
                 $operatingSystems->whereBetween('date', [$startDate, $endDate]);
+            }
+
+            if ($request->has('highcharts')) {
+                $operatingSystems->SummaryByDate();
+
+                return [
+                    'categories' => $operatingSystems->pluck('categories')->toJson(),
+                    'visitors' => $operatingSystems->pluck('visitors')->toJson(JSON_NUMERIC_CHECK),
+                    'pageviews' => $operatingSystems->pluck('pageviews')->toJson(JSON_NUMERIC_CHECK)
+                ];
             }
 
             $operatingSystems->totalData();
