@@ -45,6 +45,21 @@ class GoogleAnalyticsLocation extends Model
     }
 
     /**
+     * Scope a query return summary by date.
+     *
+     * @param  \Illuminate\Database\Eloquent\Builder  $query
+     * @return \Illuminate\Database\Eloquent\Builder
+     */
+    public function scopeSummaryByDate($query)
+    {
+        return $query->select([
+            'date AS categories',
+            DB::raw('SUM(visitors) as visitors'),
+            DB::raw('SUM(pageviews) as pageviews')
+        ])->groupBy('date');
+    }
+
+    /**
      * Scope a query return total data.
      *
      * @param  \Illuminate\Database\Eloquent\Builder  $query
