@@ -40,8 +40,8 @@ Route::group([
         Route::get('google-analytics/locations', 'locations')->name('google-analytics.locations');
         Route::get('google-analytics/languages', 'languages')->name('google-analytics.languages');
         Route::get('google-analytics/browsers', 'browsers')->name('google-analytics.browsers');
-        Route::get('google-analytics/device-categories', 'deviceCategories')->name('google-analytics.device-categories');
         Route::get('google-analytics/operating-systems', 'operatingSystems')->name('google-analytics.operating-systems');
+        Route::get('google-analytics/device-categories', 'deviceCategories')->name('google-analytics.device-categories');
 
         // User is admin
         Route::middleware('can:manage_system')->group(function() {
@@ -49,8 +49,8 @@ Route::group([
             Route::get('google-analytics/sync/locations', 'syncLocations')->name('google-analytics.sync.locations');
             Route::get('google-analytics/sync/languages', 'syncLanguages')->name('google-analytics.sync.languages');
             Route::get('google-analytics/sync/browsers', 'syncBrowsers')->name('google-analytics.sync.browsers');
-            Route::get('google-analytics/sync/device-categories', 'syncDeviceCategories')->name('google-analytics.sync.device-categories');
             Route::get('google-analytics/sync/operating-systems', 'syncOperatingSystems')->name('google-analytics.sync.operating-systems');
+            Route::get('google-analytics/sync/device-categories', 'syncDeviceCategories')->name('google-analytics.sync.device-categories');
         });
     });
 

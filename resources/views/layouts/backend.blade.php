@@ -110,14 +110,14 @@
                                             </li>
 
                                             <li class="nav-item">
-                                                <a href="{{ route('backend.google-analytics.device-categories') }}" class="nav-link @if(request()->routeIs('backend.google-analytics.device-categories')) active @endif">
-                                                    {{ __('menu.backend.google-analytics.device-categories') }}
+                                                <a href="{{ route('backend.google-analytics.operating-systems') }}" class="nav-link @if(request()->routeIs('backend.google-analytics.operating-systems')) active @endif">
+                                                    {{ __('menu.backend.google-analytics.operating-systems') }}
                                                 </a>
                                             </li>
 
                                             <li class="nav-item">
-                                                <a href="{{ route('backend.google-analytics.operating-systems') }}" class="nav-link @if(request()->routeIs('backend.google-analytics.operating-systems')) active @endif">
-                                                    {{ __('menu.backend.google-analytics.operating-systems') }}
+                                                <a href="{{ route('backend.google-analytics.device-categories') }}" class="nav-link @if(request()->routeIs('backend.google-analytics.device-categories')) active @endif">
+                                                    {{ __('menu.backend.google-analytics.device-categories') }}
                                                 </a>
                                             </li>
                                         </ul>

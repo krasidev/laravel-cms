@@ -59,14 +59,6 @@ class GoogleAnalyticsSeeder extends Seeder
         ]
     ];
 
-    const DEVICE_CATEGORIES = [
-        [
-            'name' => 'desktop'
-        ], [
-            'name' => 'mobile'
-        ]
-    ];
-
     const OPERATING_SYSTEMS = [
         [
             'name' => 'Windows',
@@ -80,6 +72,14 @@ class GoogleAnalyticsSeeder extends Seeder
         ], [
             'name' => 'Android',
             'version' => '7.1.1'
+        ]
+    ];
+
+    const DEVICE_CATEGORIES = [
+        [
+            'name' => 'desktop'
+        ], [
+            'name' => 'mobile'
         ]
     ];
 
@@ -99,8 +99,8 @@ class GoogleAnalyticsSeeder extends Seeder
             $countLocations = count(self::LOCATIONS) - 1;
             $countLanguages = count(self::LANGUAGES) - 1;
             $countBrowsers = count(self::BROWSERS) - 1;
-            $countDeviceCategories = count(self::DEVICE_CATEGORIES) - 1;
             $countOperatingSystems = count(self::OPERATING_SYSTEMS) - 1;
+            $countDeviceCategories = count(self::DEVICE_CATEGORIES) - 1;
 
             foreach ($period as $date) {
                 $sumVisitors = 0;
@@ -109,8 +109,8 @@ class GoogleAnalyticsSeeder extends Seeder
                 $location = self::LOCATIONS[rand(0, $countLocations)];
                 $language = self::LANGUAGES[rand(0, $countLanguages)];
                 $browser = self::BROWSERS[rand(0, $countBrowsers)];
-                $deviceCategory = self::DEVICE_CATEGORIES[rand(0, $countDeviceCategories)];
                 $operatingSystem = self::OPERATING_SYSTEMS[rand(0, $countOperatingSystems)];
+                $deviceCategory = self::DEVICE_CATEGORIES[rand(0, $countDeviceCategories)];
 
                 foreach ($projects as $project) {
                     $visitors = rand(1, 5);
@@ -155,18 +155,18 @@ class GoogleAnalyticsSeeder extends Seeder
                     'pageviews' => $sumPageViews
                 ]);
 
-                GoogleAnalyticsDeviceCategory::updateOrCreate([
+                GoogleAnalyticsOperatingSystem::updateOrCreate([
                     'date' => $date,
-                    'name' => $deviceCategory['name'],
+                    'name' => $operatingSystem['name'],
+                    'version' => $operatingSystem['version']
                 ], [
                     'visitors' => $sumVisitors,
                     'pageviews' => $sumPageViews
                 ]);
 
-                GoogleAnalyticsOperatingSystem::updateOrCreate([
+                GoogleAnalyticsDeviceCategory::updateOrCreate([
                     'date' => $date,
-                    'name' => $operatingSystem['name'],
-                    'version' => $operatingSystem['version']
+                    'name' => $deviceCategory['name'],
                 ], [
                     'visitors' => $sumVisitors,
                     'pageviews' => $sumPageViews

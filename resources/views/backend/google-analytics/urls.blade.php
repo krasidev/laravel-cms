@@ -14,7 +14,7 @@
     </div>
 
     <div class="card-body">
-        <div class="row" style="margin-bottom: -1rem;">
+        <div class="row mb-n3">
             <div class="col-12 col-sm-4">
                 <div class="form-group">
                     <select name="path" class="form-control datatable-filters select2" data-placeholder="{{ __('content.backend.google-analytics.table.filters.options.path') }}">

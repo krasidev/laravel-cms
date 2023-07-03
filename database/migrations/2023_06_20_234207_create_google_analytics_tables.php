@@ -57,16 +57,6 @@ class CreateGoogleAnalyticsTables extends Migration
             $table->unique(['date', 'name', 'version']);
         });
 
-        Schema::create('google_analytics_device_categories', function (Blueprint $table) {
-            $table->id();
-            $table->date('date');
-            $table->string('name', 64)->nullable();
-            $table->unsignedInteger('visitors')->default(0);
-            $table->unsignedInteger('pageviews')->default(0);
-            $table->timestamps();
-            $table->unique(['date', 'name']);
-        });
-
         Schema::create('google_analytics_operating_systems', function (Blueprint $table) {
             $table->id();
             $table->date('date');
@@ -77,6 +67,16 @@ class CreateGoogleAnalyticsTables extends Migration
             $table->timestamps();
             $table->unique(['date', 'name', 'version']);
         });
+
+        Schema::create('google_analytics_device_categories', function (Blueprint $table) {
+            $table->id();
+            $table->date('date');
+            $table->string('name', 64)->nullable();
+            $table->unsignedInteger('visitors')->default(0);
+            $table->unsignedInteger('pageviews')->default(0);
+            $table->timestamps();
+            $table->unique(['date', 'name']);
+        });
     }
 
     /**
@@ -86,8 +86,8 @@ class CreateGoogleAnalyticsTables extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('google_analytics_operating_systems');
         Schema::dropIfExists('google_analytics_device_categories');
+        Schema::dropIfExists('google_analytics_operating_systems');
         Schema::dropIfExists('google_analytics_browsers');
         Schema::dropIfExists('google_analytics_languages');
         Schema::dropIfExists('google_analytics_locations');
