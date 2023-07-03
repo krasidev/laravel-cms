@@ -178,44 +178,6 @@ class GoogleAnalyticsController extends Controller
         return view('backend.google-analytics.browsers', compact('browsers'));
     }
 
-    public function deviceCategories(Request $request)
-    {
-        if ($request->ajax()) {
-            $deviceCategories = GoogleAnalyticsDeviceCategory::query();
-
-            if ($request->get('name')) {
-                $deviceCategories->where('name', $request->get('name'));
-            }
-
-            $startDate = $request->get('start_date') ?? $request->get('end_date');
-            $endDate = $request->get('end_date') ?? $request->get('start_date');
-
-            if ($startDate && $endDate) {
-                $deviceCategories->whereBetween('date', [$startDate, $endDate]);
-            }
-
-            if ($request->has('highcharts')) {
-                $deviceCategories->SummaryByDate();
-
-                return [
-                    'categories' => $deviceCategories->pluck('categories')->toJson(),
-                    'visitors' => $deviceCategories->pluck('visitors')->toJson(JSON_NUMERIC_CHECK),
-                    'pageviews' => $deviceCategories->pluck('pageviews')->toJson(JSON_NUMERIC_CHECK)
-                ];
-            }
-
-            $deviceCategories->totalData();
-
-            $datatable = datatables()->eloquent($deviceCategories);
-
-            return $datatable->make(true);
-        }
-
-        $deviceCategories = GoogleAnalyticsDeviceCategory::distinct('name')->select('name')->get();
-
-        return view('backend.google-analytics.device-categories', compact('deviceCategories'));
-    }
-
     public function operatingSystems(Request $request)
     {
         if ($request->ajax()) {
@@ -252,6 +214,44 @@ class GoogleAnalyticsController extends Controller
         $operatingSystems = GoogleAnalyticsOperatingSystem::distinct('name')->select('name')->get();
 
         return view('backend.google-analytics.operating-systems', compact('operatingSystems'));
+    }
+
+    public function deviceCategories(Request $request)
+    {
+        if ($request->ajax()) {
+            $deviceCategories = GoogleAnalyticsDeviceCategory::query();
+
+            if ($request->get('name')) {
+                $deviceCategories->where('name', $request->get('name'));
+            }
+
+            $startDate = $request->get('start_date') ?? $request->get('end_date');
+            $endDate = $request->get('end_date') ?? $request->get('start_date');
+
+            if ($startDate && $endDate) {
+                $deviceCategories->whereBetween('date', [$startDate, $endDate]);
+            }
+
+            if ($request->has('highcharts')) {
+                $deviceCategories->SummaryByDate();
+
+                return [
+                    'categories' => $deviceCategories->pluck('categories')->toJson(),
+                    'visitors' => $deviceCategories->pluck('visitors')->toJson(JSON_NUMERIC_CHECK),
+                    'pageviews' => $deviceCategories->pluck('pageviews')->toJson(JSON_NUMERIC_CHECK)
+                ];
+            }
+
+            $deviceCategories->totalData();
+
+            $datatable = datatables()->eloquent($deviceCategories);
+
+            return $datatable->make(true);
+        }
+
+        $deviceCategories = GoogleAnalyticsDeviceCategory::distinct('name')->select('name')->get();
+
+        return view('backend.google-analytics.device-categories', compact('deviceCategories'));
     }
 
     public function syncUrls()
@@ -298,22 +298,22 @@ class GoogleAnalyticsController extends Controller
             ]);
     }
 
-    public function syncDeviceCategories()
+    public function syncOperatingSystems()
     {
-        dispatch(new ProcessGoogleAnalyticsDeviceCategory($this->days));
+        dispatch(new ProcessGoogleAnalyticsOperatingSystem($this->days));
 
-        return redirect()->route('backend.google-analytics.device-categories')
+        return redirect()->route('backend.google-analytics.operating-systems')
             ->with('success', [
                 'title' => __('messages.backend.google-analytics.sync_success.title'),
                 'text' => __('messages.backend.google-analytics.sync_success.text')
             ]);
     }
 
-    public function syncOperatingSystems()
+    public function syncDeviceCategories()
     {
-        dispatch(new ProcessGoogleAnalyticsOperatingSystem($this->days));
+        dispatch(new ProcessGoogleAnalyticsDeviceCategory($this->days));
 
-        return redirect()->route('backend.google-analytics.operating-systems')
+        return redirect()->route('backend.google-analytics.device-categories')
             ->with('success', [
                 'title' => __('messages.backend.google-analytics.sync_success.title'),
                 'text' => __('messages.backend.google-analytics.sync_success.text')
