@@ -7,6 +7,7 @@ use App\Models\GoogleAnalyticsDeviceCategory;
 use App\Models\GoogleAnalyticsLanguage;
 use App\Models\GoogleAnalyticsLocation;
 use App\Models\GoogleAnalyticsOperatingSystem;
+use App\Models\GoogleAnalyticsOverview;
 use App\Models\GoogleAnalyticsUrl;
 use App\Models\Project;
 use Carbon\Carbon;
@@ -127,6 +128,19 @@ class GoogleAnalyticsSeeder extends Seeder
                         'pageviews' => $pageViews
                     ]);
                 }
+
+                GoogleAnalyticsOverview::updateOrCreate([
+                    'date' => $date,
+                    'device_category' => $deviceCategory['name'],
+                    'operating_system' => $operatingSystem['name'],
+                    'browser' => $browser['name'],
+                    'continent' => $location['continent'],
+                    'country' => $location['country'],
+                    'city' => $location['city']
+                ], [
+                    'visitors' => $sumVisitors,
+                    'pageviews' => $sumPageViews
+                ]);
 
                 GoogleAnalyticsLocation::updateOrCreate([
                     'date' => $date,
