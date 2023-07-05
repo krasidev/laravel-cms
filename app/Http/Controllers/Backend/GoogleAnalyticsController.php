@@ -8,12 +8,14 @@ use App\Jobs\ProcessGoogleAnalyticsDeviceCategory;
 use App\Jobs\ProcessGoogleAnalyticsLanguage;
 use App\Jobs\ProcessGoogleAnalyticsLocation;
 use App\Jobs\ProcessGoogleAnalyticsOperatingSystem;
+use App\Jobs\ProcessGoogleAnalyticsOverview;
 use App\Jobs\ProcessGoogleAnalyticsUrl;
 use App\Models\GoogleAnalyticsBrowser;
 use App\Models\GoogleAnalyticsDeviceCategory;
 use App\Models\GoogleAnalyticsLanguage;
 use App\Models\GoogleAnalyticsLocation;
 use App\Models\GoogleAnalyticsOperatingSystem;
+use App\Models\GoogleAnalyticsOverview;
 use App\Models\GoogleAnalyticsUrl;
 use Illuminate\Http\Request;
 
@@ -24,6 +26,103 @@ class GoogleAnalyticsController extends Controller
     public function __construct()
     {
         $this->days = 2;
+    }
+
+    public function overview(Request $request)
+    {
+        if ($request->ajax()) {
+            $overview = GoogleAnalyticsOverview::query();
+
+            $startDate = $request->get('start_date') ?? $request->get('end_date');
+            $endDate = $request->get('end_date') ?? $request->get('start_date');
+
+            if ($startDate && $endDate) {
+                $overview->whereBetween('date', [$startDate, $endDate]);
+            }
+
+            if ($request->has('highcharts')) {
+                $overview->SummaryByDate();
+
+                return [
+                    'categories' => $overview->pluck('categories')->toJson(),
+                    'visitors' => $overview->pluck('visitors')->toJson(JSON_NUMERIC_CHECK),
+                    'pageviews' => $overview->pluck('pageviews')->toJson(JSON_NUMERIC_CHECK)
+                ];
+            }
+
+            $overview = $overview->SummaryByDimension()->get();
+
+            $visitors = $overview->groupBy(['device_category', 'operating_system', 'browser', 'continent', 'country', 'city'])->map(function ($data, $key) {
+                return [
+                    'name' => $key,
+                    'children' => $data->map(function ($operatingSystem, $key) {
+                        return [
+                            'name' => $key,
+                            'children' => $operatingSystem->map(function ($data, $key) {
+                                return [
+                                    'name' => $key,
+                                    'children' => $data->map(function ($data, $key) {
+                                        return [
+                                            'name' => $key,
+                                            'children' => $data->map(function ($data, $key) {
+                                                return [
+                                                    'name' => $key,
+                                                    'children' => $data->map(function ($data, $key) {
+                                                        return [
+                                                            'name' => $key,
+                                                            'size' => $data->sum('visitors')
+                                                        ];
+                                                    })->values()
+                                                ];
+                                            })->values()
+                                        ];
+                                    })->values()
+                                ];
+                            })->values()
+                        ];
+                    })->values()
+                ];
+            })->values()->toJson();
+
+            $pageviews = $overview->groupBy(['device_category', 'operating_system', 'browser', 'continent', 'country', 'city'])->map(function ($data, $key) {
+                return [
+                    'name' => $key,
+                    'children' => $data->map(function ($data, $key) {
+                        return [
+                            'name' => $key,
+                            'children' => $data->map(function ($data, $key) {
+                                return [
+                                    'name' => $key,
+                                    'children' => $data->map(function ($data, $key) {
+                                        return [
+                                            'name' => $key,
+                                            'children' => $data->map(function ($data, $key) {
+                                                return [
+                                                    'name' => $key,
+                                                    'children' => $data->map(function ($data, $key) {
+                                                        return [
+                                                            'name' => $key,
+                                                            'size' => $data->sum('pageviews')
+                                                        ];
+                                                    })->values()
+                                                ];
+                                            })->values()
+                                        ];
+                                    })->values()
+                                ];
+                            })->values()
+                        ];
+                    })->values()
+                ];
+            })->values()->toJson();
+
+            return [
+                'visitors' => $visitors,
+                'pageviews' => $pageviews
+            ];
+        }
+
+        return view('backend.google-analytics.overview');
     }
 
     public function urls(Request $request)
@@ -252,6 +351,17 @@ class GoogleAnalyticsController extends Controller
         $deviceCategories = GoogleAnalyticsDeviceCategory::distinct('name')->select('name')->get();
 
         return view('backend.google-analytics.device-categories', compact('deviceCategories'));
+    }
+
+    public function syncOverview()
+    {
+        dispatch(new ProcessGoogleAnalyticsOverview($this->days));
+
+        return redirect()->route('backend.google-analytics.overview')
+            ->with('success', [
+                'title' => __('messages.backend.google-analytics.sync_success.title'),
+                'text' => __('messages.backend.google-analytics.sync_success.text')
+            ]);
     }
 
     public function syncUrls()

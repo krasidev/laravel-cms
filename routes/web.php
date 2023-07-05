@@ -36,6 +36,7 @@ Route::group([
 
     // Google Analytics
     Route::controller(GoogleAnalyticsController::class)->group(function() {
+        Route::get('google-analytics/overview', 'overview')->name('google-analytics.overview');
         Route::get('google-analytics/urls', 'urls')->name('google-analytics.urls');
         Route::get('google-analytics/locations', 'locations')->name('google-analytics.locations');
         Route::get('google-analytics/languages', 'languages')->name('google-analytics.languages');
@@ -45,6 +46,7 @@ Route::group([
 
         // User is admin
         Route::middleware('can:manage_system')->group(function() {
+            Route::get('google-analytics/sync/overview', 'syncOverview')->name('google-analytics.sync.overview');
             Route::get('google-analytics/sync/urls', 'syncUrls')->name('google-analytics.sync.urls');
             Route::get('google-analytics/sync/locations', 'syncLocations')->name('google-analytics.sync.locations');
             Route::get('google-analytics/sync/languages', 'syncLanguages')->name('google-analytics.sync.languages');

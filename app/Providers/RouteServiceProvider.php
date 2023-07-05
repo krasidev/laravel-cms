@@ -17,7 +17,7 @@ class RouteServiceProvider extends ServiceProvider
      *
      * @var string
      */
-    public const HOME = '/admin/google-analytics/urls';
+    public const HOME = '/admin/google-analytics/overview';
 
     /**
      * The controller namespace for the application.

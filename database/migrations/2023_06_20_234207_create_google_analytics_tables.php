@@ -13,6 +13,21 @@ class CreateGoogleAnalyticsTables extends Migration
      */
     public function up()
     {
+        Schema::create('google_analytics_overviews', function (Blueprint $table) {
+            $table->id();
+            $table->date('date');
+            $table->string('device_category', 64)->nullable();
+            $table->string('operating_system', 64)->nullable();
+            $table->string('browser', 64)->nullable();
+            $table->string('continent', 32)->nullable();
+            $table->string('country', 32)->nullable();
+            $table->string('city', 32)->nullable();
+            $table->unsignedInteger('visitors')->default(0);
+            $table->unsignedInteger('pageviews')->default(0);
+            $table->timestamps();
+            $table->unique(['date', 'device_category', 'operating_system', 'browser', 'continent', 'country', 'city'], 'google_analytics_overview_unique');
+        });
+
         Schema::create('google_analytics_urls', function (Blueprint $table) {
             $table->id();
             $table->date('date');
@@ -92,5 +107,6 @@ class CreateGoogleAnalyticsTables extends Migration
         Schema::dropIfExists('google_analytics_languages');
         Schema::dropIfExists('google_analytics_locations');
         Schema::dropIfExists('google_analytics_urls');
+        Schema::dropIfExists('google_analytics_overviews');
     }
 }

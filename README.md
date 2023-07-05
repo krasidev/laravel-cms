@@ -31,9 +31,9 @@ The Laravel framework is open-sourced software licensed under the [MIT license](
 
 ![Screenshot](screenshots/home.png)
 
-## Google Analytics - URLs
+## Google Analytics - Overview
 
-![Screenshot](screenshots/google-analytics-urls.png)
+![Screenshot](screenshots/google-analytics-overview.png)
 
 ## List Projects
 
