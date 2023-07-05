@@ -23,6 +23,7 @@
         "jquery": "^3.7.0",
         "laravel-mix": "^6.0.6",
         "lodash": "^4.17.19",
+        "nvd3": "^1.8.6",
         "popper.js": "^1.16.1",
         "resolve-url-loader": "^5.0.0",
         "sass": "^1.32.11",

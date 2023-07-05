@@ -86,6 +86,12 @@
                                     <div id="collapseGoogleAnalytics" class="collapse @if($isOpenCollapseGoogleAnalytics) show @endif">
                                         <ul class="nav flex-column">
                                             <li class="nav-item">
+                                                <a href="{{ route('backend.google-analytics.overview') }}" class="nav-link @if(request()->routeIs('backend.google-analytics.overview')) active @endif">
+                                                    {{ __('menu.backend.google-analytics.overview') }}
+                                                </a>
+                                            </li>
+
+                                            <li class="nav-item">
                                                 <a href="{{ route('backend.google-analytics.urls') }}" class="nav-link @if(request()->routeIs('backend.google-analytics.urls')) active @endif">
                                                     {{ __('menu.backend.google-analytics.urls') }}
                                                 </a>
