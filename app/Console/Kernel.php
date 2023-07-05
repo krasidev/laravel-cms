@@ -7,6 +7,7 @@ use App\Jobs\ProcessGoogleAnalyticsDeviceCategory;
 use App\Jobs\ProcessGoogleAnalyticsLanguage;
 use App\Jobs\ProcessGoogleAnalyticsLocation;
 use App\Jobs\ProcessGoogleAnalyticsOperatingSystem;
+use App\Jobs\ProcessGoogleAnalyticsOverview;
 use App\Jobs\ProcessGoogleAnalyticsUrl;
 use Illuminate\Console\Scheduling\Schedule;
 use Illuminate\Foundation\Console\Kernel as ConsoleKernel;
@@ -23,6 +24,7 @@ class Kernel extends ConsoleKernel
     {
         // $schedule->command('inspire')->hourly();
 
+        $schedule->job(new ProcessGoogleAnalyticsOverview(2))->daily();
         $schedule->job(new ProcessGoogleAnalyticsUrl(2))->daily();
         $schedule->job(new ProcessGoogleAnalyticsLocation(2))->daily();
         $schedule->job(new ProcessGoogleAnalyticsLanguage(2))->daily();

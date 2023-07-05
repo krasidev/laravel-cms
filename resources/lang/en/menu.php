@@ -9,6 +9,7 @@ return [
         ],
         'google-analytics' => [
             'text' => 'Google Analytics',
+            'overview' => 'Overview',
             'urls' => 'URLs',
             'locations' => 'Locations',
             'languages' => 'Languages',

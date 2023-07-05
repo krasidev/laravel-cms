@@ -17,6 +17,13 @@ return [
             ]
         ],
         'google-analytics' => [
+            'sunburstchart' => [
+                'title' => 'Summary by dimension',
+                'dimensions' => [
+                    'visitors' => 'Visitors',
+                    'pageviews' => 'Page Views'
+                ]
+            ],
             'highchart' => [
                 'title' => 'Summary by date',
                 'series' => [
