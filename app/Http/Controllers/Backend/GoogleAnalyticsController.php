@@ -52,74 +52,43 @@ class GoogleAnalyticsController extends Controller
 
             $overview = $overview->SummaryByDimension()->get();
 
-            $visitors = $overview->groupBy(['device_category', 'operating_system', 'browser', 'continent', 'country', 'city'])->map(function ($data, $key) {
-                return [
-                    'name' => $key,
-                    'children' => $data->map(function ($operatingSystem, $key) {
-                        return [
-                            'name' => $key,
-                            'children' => $operatingSystem->map(function ($data, $key) {
-                                return [
-                                    'name' => $key,
-                                    'children' => $data->map(function ($data, $key) {
-                                        return [
-                                            'name' => $key,
-                                            'children' => $data->map(function ($data, $key) {
-                                                return [
-                                                    'name' => $key,
-                                                    'children' => $data->map(function ($data, $key) {
-                                                        return [
-                                                            'name' => $key,
-                                                            'size' => $data->sum('visitors')
-                                                        ];
-                                                    })->values()
-                                                ];
-                                            })->values()
-                                        ];
-                                    })->values()
-                                ];
-                            })->values()
-                        ];
-                    })->values()
-                ];
-            })->values()->toJson();
+            $data = [];
 
-            $pageviews = $overview->groupBy(['device_category', 'operating_system', 'browser', 'continent', 'country', 'city'])->map(function ($data, $key) {
-                return [
-                    'name' => $key,
-                    'children' => $data->map(function ($data, $key) {
-                        return [
-                            'name' => $key,
-                            'children' => $data->map(function ($data, $key) {
-                                return [
-                                    'name' => $key,
-                                    'children' => $data->map(function ($data, $key) {
-                                        return [
-                                            'name' => $key,
-                                            'children' => $data->map(function ($data, $key) {
-                                                return [
-                                                    'name' => $key,
-                                                    'children' => $data->map(function ($data, $key) {
-                                                        return [
-                                                            'name' => $key,
-                                                            'size' => $data->sum('pageviews')
-                                                        ];
-                                                    })->values()
-                                                ];
-                                            })->values()
-                                        ];
-                                    })->values()
-                                ];
-                            })->values()
-                        ];
-                    })->values()
-                ];
-            })->values()->toJson();
+            foreach (['visitors', 'pageviews'] as $metric) {
+                $data[$metric] = $overview->groupBy(['device_category', 'operating_system', 'browser', 'continent', 'country', 'city'])->map(function ($data, $key) use ($metric) {
+                    return [
+                        'name' => $key,
+                        'children' => $data->map(function ($data, $key) use ($metric) {
+                            return [
+                                'name' => $key,
+                                'children' => $data->map(function ($data, $key) use ($metric) {
+                                    return [
+                                        'name' => $key,
+                                        'children' => $data->map(function ($data, $key) use ($metric) {
+                                            return [
+                                                'name' => $key,
+                                                'children' => $data->map(function ($data, $key) use ($metric) {
+                                                    return [
+                                                        'name' => $key,
+                                                        'children' => $data->map(function ($data, $key) use ($metric) {
+                                                            return [
+                                                                'name' => $key,
+                                                                'size' => $data->sum($metric)
+                                                            ];
+                                                        })->values()
+                                                    ];
+                                                })->values()
+                                            ];
+                                        })->values()
+                                    ];
+                                })->values()
+                            ];
+                        })->values()
+                    ];
+                })->values()->toJson();
+            }
 
-            return [
-                'visitors' => $visitors,
-                'pageviews' => $pageviews
-            ];
+            return $data;
         }
 
         return view('backend.google-analytics.overview');
