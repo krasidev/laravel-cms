@@ -43,28 +43,38 @@ window.navbarNavInit = function () {
  */
 window.navbarNavSearchInit = function () {
     var backendSideNavGroupULs = $('#backend-side-nav-group ul');
+    var backendSideNavGroupULsItems = backendSideNavGroupULs.find('li');
     var backendSideNavGroupULsLinks = backendSideNavGroupULs.find('a');
 
     $('#backend-side-nav-search').on('keyup propertychange', function () {
         var text = $(this).val().toUpperCase();
 
-        backendSideNavGroupULs.toggleClass('searching', text != '');
-        backendSideNavGroupULsLinks.map(function () {
-            if (text != '' && this.text.trim().toUpperCase().indexOf(text) > -1) {
-                var items = $(this).parents('li');
+        if (text != '') {
+            backendSideNavGroupULsLinks.map(function () {
+                if (this.text.trim().toUpperCase().indexOf(text) > -1) {
+                    var items = $(this).parents('li');
 
-                items.find('[data-toggle="collapse"]').removeClass('collapsed').attr('aria-expanded', true);
-                items.addClass('show-search').find('.collapse').addClass('show');
-            } else {
-                var link = $(this);
+                    items.find('[data-toggle="collapse"]').removeClass('collapsed').attr('aria-expanded', true);
+                    items.removeClass('d-none').find('.collapse').addClass('show');
+                } else {
+                    var link = $(this);
 
-                if (link.attr('data-toggle') == 'collapse') {
-                    link.addClass('collapsed').attr('aria-expanded', false);
+                    if (link.attr('data-toggle') == 'collapse') {
+                        link.addClass('collapsed').attr('aria-expanded', false);
+                    }
+
+                    link.parent().addClass('d-none').find('.collapse').removeClass('show');
                 }
+            });
+        } else {
+            var items = backendSideNavGroupULs.find('a.active').parents('li');
 
-                link.parent().removeClass('show-search').find('.collapse').removeClass('show');
-            }
-        });
+            backendSideNavGroupULsItems.find('[data-toggle="collapse"]').addClass('collapsed').attr('aria-expanded', false);
+            backendSideNavGroupULsItems.removeClass('d-none').find('.collapse').removeClass('show');
+
+            items.find('[data-toggle="collapse"]').removeClass('collapsed').attr('aria-expanded', true);
+            items.find('.collapse').addClass('show');
+        }
     });
 };
 
