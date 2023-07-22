@@ -1,5 +1,8 @@
 <script>
     function sunburstChart(select, name, children) {
+        $(select + ' > *').remove();
+        $('.nvtooltip').remove();
+
         nv.addGraph(function() {
             var chart = nv.models.sunburstChart()
                 .color(d3.scale.category20c())
