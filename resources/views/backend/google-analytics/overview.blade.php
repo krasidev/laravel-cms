@@ -70,8 +70,8 @@
                 url: '{!! route('backend.google-analytics.overview') !!}',
                 data: data,
                 success: function (data) {
-                    sunburstChart('#chart-sunburst-visitors', '{{ __('content.backend.google-analytics.sunburstchart.dimensions.visitors') }}', JSON.parse(data.visitors));
-                    sunburstChart('#chart-sunburst-pageviews', '{{ __('content.backend.google-analytics.sunburstchart.dimensions.pageviews') }}', JSON.parse(data.pageviews));
+                    sunburstChart('#chart-sunburst-visitors', JSON.parse(data.visitors));
+                    sunburstChart('#chart-sunburst-pageviews', JSON.parse(data.pageviews));
                 }
             });
 

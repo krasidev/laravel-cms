@@ -54,38 +54,50 @@ class GoogleAnalyticsController extends Controller
 
             $data = [];
 
-            foreach (['visitors', 'pageviews'] as $metric) {
-                $data[$metric] = $overview->groupBy(['device_category', 'operating_system', 'browser', 'continent', 'country', 'city'])->map(function ($data, $key) use ($metric) {
-                    return [
-                        'name' => $key,
-                        'children' => $data->map(function ($data, $key) use ($metric) {
-                            return [
-                                'name' => $key,
-                                'children' => $data->map(function ($data, $key) use ($metric) {
-                                    return [
-                                        'name' => $key,
-                                        'children' => $data->map(function ($data, $key) use ($metric) {
-                                            return [
-                                                'name' => $key,
-                                                'children' => $data->map(function ($data, $key) use ($metric) {
-                                                    return [
-                                                        'name' => $key,
-                                                        'children' => $data->map(function ($data, $key) use ($metric) {
-                                                            return [
-                                                                'name' => $key,
-                                                                'size' => $data->sum($metric)
-                                                            ];
-                                                        })->values()
-                                                    ];
-                                                })->values()
-                                            ];
-                                        })->values()
-                                    ];
-                                })->values()
-                            ];
-                        })->values()
-                    ];
-                })->values()->toJson();
+            foreach (['visitors', 'pageviews'] as $metric) {                
+                $a = 1 / $overview->sum($metric);
+
+                $data[$metric] = collect([
+                    'name' => __('content.backend.google-analytics.sunburstchart.dimensions.' . $metric),
+                    'color' => 'rgb(0, 105, 217)',
+                    'children' => $overview->groupBy('device_category')->map(function ($data, $key) use ($metric, $a) {
+                        return [
+                            'name' => $key,
+                            'color' => 'rgba(0, 105, 217, ' . ($a * $data->sum($metric)) . ')',
+                            'children' => $data->groupBy('operating_system')->map(function ($data, $key) use ($metric, $a) {
+                                return [
+                                    'name' => $key,
+                                    'color' => 'rgba(0, 105, 217, ' . ($a * $data->sum($metric)) . ')',
+                                    'children' => $data->groupBy('browser')->map(function ($data, $key) use ($metric, $a) {
+                                        return [
+                                            'name' => $key,
+                                            'color' => 'rgba(0, 105, 217, ' . ($a * $data->sum($metric)) . ')',
+                                            'children' => $data->groupBy('continent')->map(function ($data, $key) use ($metric, $a) {
+                                                return [
+                                                    'name' => $key,
+                                                    'color' => 'rgba(0, 105, 217, ' . ($a * $data->sum($metric)) . ')',
+                                                    'children' => $data->groupBy('country')->map(function ($data, $key) use ($metric, $a) {
+                                                        return [
+                                                            'name' => $key,
+                                                            'color' => 'rgba(0, 105, 217, ' . ($a * $data->sum($metric)) . ')',
+                                                            'children' => $data->groupBy('city')->map(function ($data, $key) use ($metric, $a) {
+                                                                return [
+                                                                    'name' => $key,
+                                                                    'color' => 'rgba(0, 105, 217, ' . ($a * $data->sum($metric)) . ')',
+                                                                    'size' => $data->sum($metric)
+                                                                ];
+                                                            })->values()
+                                                        ];
+                                                    })->values()
+                                                ];
+                                            })->values()
+                                        ];
+                                    })->values()
+                                ];
+                            })->values()
+                        ];
+                    })->values()
+                ])->toJson();
             }
 
             return $data;

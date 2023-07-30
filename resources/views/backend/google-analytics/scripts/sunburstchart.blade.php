@@ -1,5 +1,5 @@
 <script>
-    function sunburstChart(select, name, children) {
+    function sunburstChart(select, data) {
         $(select + ' > *').remove();
         $('.nvtooltip').remove();
 
@@ -14,10 +14,7 @@
                     left: 0
                 });
 
-            d3.select(select).datum([{
-                "name": name,
-                "children": children
-            }]).call(chart);
+            d3.select(select).datum([data]).call(chart);
 
             nv.utils.windowResize(chart.update);
 
